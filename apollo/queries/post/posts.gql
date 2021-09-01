@@ -1,0 +1,14 @@
+query Posts {
+  posts {
+    id
+    title
+    content
+    excerpt
+    feature_image {
+      url
+    }
+    tags {
+      name
+    }
+  }
+}

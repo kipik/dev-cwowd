@@ -1,10 +1,11 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
+      expand-on-hover
       :clipped="clipped"
-      fixed
+      fixed 
       app
     >
       <v-list>
@@ -24,11 +25,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
+     <v-app-bar dark app dense>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn
         icon
@@ -48,20 +45,27 @@
       >
         <v-icon>mdi-minus</v-icon>
       </v-btn>
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title>
+        <g-link to="/">Cwowd</g-link>
+      </v-toolbar-title>
+      <v-subheader class="subheader">Ludique et participatif</v-subheader>
       <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
+      <div class="navbar-right">
+        <ul class="navbar-nav">
+          <li v-for="tag in tags" :key="tag.id">
+            <router-link :to="{ name: 'tag-id', params: { id: tag.id }}" etiquette="a">{{ tag.name }}
+            </router-link>
+          </li>
+        </ul>
+      </div>
     </v-app-bar>
+
     <v-main>
       <v-container>
         <Nuxt />
       </v-container>
     </v-main>
+
     <v-navigation-drawer
       v-model="rightDrawer"
       :right="right"
@@ -79,6 +83,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+
     <v-footer
       :absolute="!fixed"
       app
@@ -89,6 +94,8 @@
 </template>
 
 <script>
+import tagsQuery from '~/apollo/queries/tag/tags'
+
 export default {
   data () {
     return {
@@ -98,20 +105,30 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Welcome',
+          title: 'Accueil',
           to: '/'
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
+          title: 'Discussions | Forum',
           to: '/inspire'
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Vuetify.js',
+      tags: [],
+    }
+  },
+  apollo: {
+    tags: {
+      prefetch: true,
+      query: tagsQuery 
     }
   }
 }
 </script>
+
+<style scoped>
+</style>
