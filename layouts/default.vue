@@ -4,7 +4,6 @@
       v-model="drawer"
       :mini-variant="miniVariant"
       expand-on-hover
-      :clipped="clipped"
       fixed 
       app
     >
@@ -25,7 +24,8 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-     <v-app-bar dark app dense>
+     
+    <v-app-bar dark app dense>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn
         icon
@@ -52,7 +52,7 @@
       <v-spacer />
       <div class="navbar-right">
         <ul class="navbar-nav">
-          <li v-for="tag in tags" :key="tag.id">
+          <li v-for="tag in tags" :key="tag.id" class="links">
             <router-link :to="{ name: 'tag-id', params: { id: tag.id }}" etiquette="a">{{ tag.name }}
             </router-link>
           </li>
@@ -61,7 +61,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container>
+      <v-container fluid>
         <Nuxt />
       </v-container>
     </v-main>
@@ -131,4 +131,13 @@ export default {
 </script>
 
 <style scoped>
+.navbar-nav {
+  display: flex;
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 10px;
+}
 </style>
