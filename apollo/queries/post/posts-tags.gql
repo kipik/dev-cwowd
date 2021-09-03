@@ -1,0 +1,13 @@
+query Tag($id: ID!){  
+  tag(id: $id) {
+    name
+    posts {
+      id
+      title
+      content
+      feature_image {
+        url
+      }
+    }
+  }
+}
