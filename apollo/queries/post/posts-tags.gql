@@ -1,7 +1,7 @@
 query Tag($id: ID!){  
   tag(id: $id) {
     name
-    posts {
+    posts(sort: "publish_date:desc") {
       id
       title
       content
