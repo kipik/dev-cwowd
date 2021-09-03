@@ -46,14 +46,18 @@
         <v-icon>mdi-minus</v-icon>
       </v-btn>
       <v-toolbar-title>
-        <g-link to="/">Cwowd</g-link>
+        <NuxtLink to="/" class="a">Cwowd</NuxtLink>
       </v-toolbar-title>
       <v-subheader class="subheader">Ludique et participatif</v-subheader>
       <v-spacer />
       <div class="navbar-right">
         <ul class="navbar-nav">
           <li v-for="tag in tags" :key="tag.id" class="links">
-            <router-link :to="{ name: 'tag-id', params: { id: tag.id }}" etiquette="a">{{ tag.name }}
+            <router-link 
+              :to="{ name: 'tag-id', params: {id: tag.id} }" 
+              tag="a" 
+              class="a">
+              {{ tag.name }}
             </router-link>
           </li>
         </ul>
@@ -139,5 +143,10 @@ export default {
   display: flex;
   justify-content: space-around;
   padding: 0 10px;
+}
+
+.a {
+  text-decoration: none;
+  color: honeydew;
 }
 </style>
