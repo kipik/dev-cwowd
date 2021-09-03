@@ -9,9 +9,8 @@
       
             <v-spacer />
       
-            <div class="navbar-right">
                 <ul class="navbar-nav">
-                    <li v-for="tag in tags" :key="tag.id" class="links">
+                    <li v-for="tag in tags" :key="tag.id" class="link">
                         <router-link 
                         :to="{ name: 'tags-id', params: {id: tag.id} }" 
                         tag="a" 
@@ -19,8 +18,9 @@
                         {{ tag.name }}
                         </router-link>
                     </li>
+                    <NuxtLink to="/games" class="link a">Ludothèque</NuxtLink>
                 </ul>
-      </div>
+
         </v-app-bar>
 
   </client-only>
@@ -49,12 +49,13 @@ export default {
   color: honeydew;
 }
 .navbar-nav {
-  display: flex;
+    display: flex;
 }
 
-.links {
+.link {
   display: flex;
   justify-content: space-around;
   padding: 0 10px;
+  font-size: 0.8rem !important;
 }
 </style>

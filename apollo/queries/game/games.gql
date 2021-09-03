@@ -1,0 +1,10 @@
+query Games {
+  games {
+    id
+    title
+    description
+    box_cover {
+      url
+    }
+  }
+}

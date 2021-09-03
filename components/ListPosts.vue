@@ -48,14 +48,6 @@
                 </v-img>
                 <v-card-actions>
                     <div class="card-title">{{ post.title.substring(0, 90) }}</div>
-                    <v-spacer></v-spacer>
-                    <v-btn class="ml-2 mt-5"
-                        outlined
-                        rounded
-                        small
-                    >
-                        + d'infos
-                    </v-btn>
                 </v-card-actions>
             </v-card>
         </router-link> 
@@ -146,5 +138,8 @@ a {
 
 .card-text {
     font-weight: lighter !important;
+}
+.small-card-tag {
+background-color:rgba(0, 0, 0, .4)
 }
 </style>
