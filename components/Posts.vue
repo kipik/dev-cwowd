@@ -66,7 +66,10 @@
 <script>
 export default {
     props: {
-        posts: Array
+        posts: {
+            type: Array,
+            required: true
+        }
     },
     data() {
         return {
