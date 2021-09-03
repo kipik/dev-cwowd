@@ -3,7 +3,13 @@
     <client-only placeholder="Loading...">
     <div>  <div>
             <h1>{{ tag.name }}</h1>
-            <Posts :posts="posts || []" />
+            <!-- <Posts :posts="tag.posts || []" /> -->
+            <ul>
+              <li v-for="post in tag.posts" 
+                :key="post.id">
+                {{ post.title }}
+              </li>
+          </ul>
       </div></div>
   </client-only>
 </div>
@@ -11,12 +17,12 @@
 
 <script>
 import postsQuery from '~/apollo/queries/post/posts-tags'
-import Posts from '~/components/Posts'
+// import Posts from '~/components/Posts'
 
 export default {
-  components: {
-    Posts
-  },
+  // components: {
+  //   Posts
+  // },
     data() {
     return {
       tag: []

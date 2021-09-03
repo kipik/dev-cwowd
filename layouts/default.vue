@@ -54,7 +54,7 @@
         <ul class="navbar-nav">
           <li v-for="tag in tags" :key="tag.id" class="links">
             <router-link 
-              :to="{ name: 'tag-id', params: {id: tag.id} }" 
+              :to="{ name: 'tags-id', params: {id: tag.id} }" 
               tag="a" 
               class="a">
               {{ tag.name }}
