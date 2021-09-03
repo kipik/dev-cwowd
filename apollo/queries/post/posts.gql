@@ -2,7 +2,6 @@ query Posts {
   posts (sort: "publish_date:desc") {
     id
     title
-    content
     excerpt
     feature_image {
       url
