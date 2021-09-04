@@ -1,0 +1,10 @@
+query Games($id: ID!) {
+  game(id: $id) {
+    id
+    title
+    description
+    box_cover {
+      url
+    }
+  }
+}

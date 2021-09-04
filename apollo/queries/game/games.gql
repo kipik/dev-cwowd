@@ -2,7 +2,9 @@ query Games {
   games {
     id
     title
-    description
+    editor {
+      name
+    }
     box_cover {
       url
     }
