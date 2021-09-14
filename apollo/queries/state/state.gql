@@ -1,5 +1,14 @@
 query States($id: ID!) {
   state(id: $id) {
     id
+    name
+    games {
+      id
+      title
+      description
+      box_cover {
+        url
+      }
+    }
   }
 }

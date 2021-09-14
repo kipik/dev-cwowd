@@ -1,5 +1,5 @@
 <template>
-     <v-row class="states-grid">
+    <v-row class="states-grid">
         <client-only placeholder="Loading...">
         <!-- <router-link 
             v-for="game in Games" 
@@ -8,24 +8,27 @@
         >
             <p>{{ game.title }}</p>
         </router-link> -->
-                <div v-for="state in states" 
+            <router-link v-for="state in states" 
                 :key="state.id"
-                >
-                    <div v-if="state.id > 6">
-                                                <v-chip
+                :to="{ name: 'states-id', params: {id: state.id} }"
+
+            >
+                <div v-if="state.id > 6">                
+                    <v-chip
                             v-if="state.id == 7" 
                             color="orange"
                             outlined
                             pill
+                            link 
                         >{{ state.name }}</v-chip>
                         <v-chip
                             v-if="state.id != 7" 
                             outlined
                             pill
+                            link
                         >{{ state.name }}</v-chip>
-
-                    </div>
                 </div>
+            </router-link>
                 <!-- <v-card tile class="small-card">
                     <v-row> -->
                         <!-- <v-col class="shrink">
@@ -40,8 +43,8 @@
                             <!-- <v-card-subtitle class="textsub">{{ game.editor[0].name }}</v-card-subtitle> -->
                         <!-- </v-col>
                     </v-row>
-                </v-card> -->
-                </div>  
+                </v-card> 
+                </div>  -->
                      <!--  <v-card-actions class="card-action">
                         <v-btn icon>
                             <v-icon>mdi-heart</v-icon>
@@ -54,7 +57,6 @@
                         </v-btn>
                     </v-card-actions> -->
                     <!-- <v-card-text v-if="game.description" class="card-text">{{ game.description.substring(0, 200) }}...</v-card-text> -->
-            </div>
         </client-only>
     </v-row>
 </template>

@@ -1,6 +1,35 @@
 <template>
     <v-container fluid> 
-        <h1 class="post-title">{{ game.title }}</h1>
+
+
+    </v-container>
+</template>
+
+<script>
+import stateQuery from '~/apollo/queries/state/state'
+
+export default {
+  data() {
+    return {
+      state: Object
+    }
+  },
+  apollo: {
+    state: {
+      prefetch: true,
+      query: stateQuery,
+      variables () {
+        return { id: this.$route.params.id }
+      }
+    }
+  }
+}
+</script>
+
+
+
+
+        <!-- <h1 class="post-title">{{ game.title }}</h1>
     </v-container>
 </template>
 
@@ -47,4 +76,4 @@ export default {
     font-weight: 200;
     opacity: 50%;
 }
-</style>
+</style> -->
