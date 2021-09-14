@@ -1,0 +1,6 @@
+query States {
+  states {
+    id
+    name
+  }
+}

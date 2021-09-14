@@ -1,7 +1,7 @@
 <template>
 <div>
   <v-row justify="center" align="center">
-      <ListGames :games="games"></ListGames>
+      <ListStates :states="states"></ListStates>
   </v-row>
   <v-row justify="center" align="center" class="grid-2-1">
     <v-col>
@@ -13,19 +13,19 @@
 
 <script>
 import postsQuery from '~/apollo/queries/post/posts'
-import gamesQuery from '~/apollo/queries/game/games'
+import statesQuery from '~/apollo/queries/state/states'
 import ListPosts from '~/components/ListPosts'
-import ListGames from '~/components/ListGames'
+import ListStates from '~/components/ListStates'
 
 export default {
   components: {
     ListPosts,
-    ListGames
+    ListStates
   },
   data() {
     return {
       posts: [],
-      games: [],
+      states: [],
       query: ""
     }
   },
@@ -37,9 +37,9 @@ export default {
         return { id: parseInt(this.$route.params.id) }
       }
     },
-    games: {
+    states: {
       prefetch: true,
-      query: gamesQuery,
+      query: statesQuery,
       variables () {
         return { id: parseInt(this.$route.params.id) }
       }

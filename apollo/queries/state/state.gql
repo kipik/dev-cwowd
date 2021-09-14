@@ -1,0 +1,5 @@
+query States($id: ID!) {
+  state(id: $id) {
+    id
+  }
+}
