@@ -36,12 +36,12 @@
             </a>
           </li>
           <li v-if="!username">
-            <router-link v-if="!username" tag="a" class="nav-link" to="/signin">
+            <router-link v-if="!username" tag="a" class="nav-link" to="/users/signin">
               Connexion
             </router-link>
           </li>
           <li v-if="!username">
-            <router-link v-if="!username" tag="a" class="nav-link" to="/register">
+            <router-link v-if="!username" tag="a" class="nav-link" to="/users/register">
               Inscription
             </router-link>
           </li>
@@ -94,15 +94,26 @@ export default {
 }
 </script>
 <style scoped>
-.a {
+a {
   text-decoration: none;
   color: honeydew;
 }
 .navbar-nav {
     display: flex;
+    justify-content:space-between
 }
 
-.link {
+.navbar-nav a {
+    display: flex;
+    justify-self: space-between;
+    margin: 2px  12px;    
+}
+ul {
+  list-style-type: none;
+      text-decoration: none;
+  }
+
+.nav-link {
   display: flex;
   justify-content: space-around;
   padding: 0 10px;
