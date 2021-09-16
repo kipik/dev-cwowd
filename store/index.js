@@ -4,9 +4,9 @@ export const actions = {
     if (user) {
       commit('auth/setUser', user)
     }
-    const cart = this.$cookies.get('cart')
-    if (cart) {
-      commit('cart/setItems', cart)
+    const ludo = this.$cookies.get('ludo')
+    if (ludo) {
+      commit('ludo/setItems', ludo)
     }
   }
 }

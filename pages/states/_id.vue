@@ -45,19 +45,15 @@
               <v-divider class="mx-4"></v-divider>
 
               <v-card-text>
-                <v-chip-group
-                  v-model="selection"
-                  active-class="deep-purple accent-4 white--text"
-                  column
-                >
-                  <v-card-actions>
-                    <v-chip        
+
+                    <v-chip  
+                      link      
                       @click="action">Discussion</v-chip>
                     <v-chip>fiche</v-chip>
-                    <v-chip>+ ludo</v-chip>
+                    <v-chip 
+                     link
+                     @click="addToLudo(game)">+ ludo</v-chip>
                     <v-chip>+ favs</v-chip>
-                  </v-card-actions>
-                </v-chip-group>
               </v-card-text>
             </v-card>
           </div>
@@ -65,6 +61,7 @@
 
       <!-- display infos personnalisées / collection -->
       <div class="width-expand@m">
+        <Ludo />
       </div>
       </div>  
     </client-only>
@@ -72,9 +69,14 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+import Ludo from '~/components/Ludo.vue'
 import stateQuery from '~/apollo/queries/state/state'
 
 export default {
+    components: {
+    Ludo
+  },
   data() {
     return {
       state: Object,
@@ -89,6 +91,12 @@ export default {
         return { id: parseInt(this.$route.params.id) }
       }
     }
+  },
+  methods:{
+    ...mapMutations({
+      addToLudo: 'ludo/add',
+      removeFromLudo: 'ludo/remove'
+    }),
   }
 }
 </script>
