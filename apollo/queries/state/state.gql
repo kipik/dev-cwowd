@@ -9,6 +9,9 @@ query States($id: ID!) {
       box_cover {
         url
       }
+      editor {
+        name
+      }
     }
   }
 }

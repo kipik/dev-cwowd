@@ -4,31 +4,63 @@
     <!-- Link to go back to the previous page -->
     <a class="uk-button-primary" @click="$router.go(-1)">
       <v-icon>mdi-chevron-double-left</v-icon>
-      go back
     </a>
     <h1 class="span-title">{{ state.name }}</h1>
 
     <client-only>
       <div grid>
-        <div class="width-1-3@m">
           <div v-for="game in state.games"
           :key="game.id">
-            <div class="card">
-              <div class="card-media-top">
-                    <img :src="game.box_cover.url" alt="" />
-              </div> 
-                <div class="card-body">
-                    <h3 class="card-title">{{ game.title }}</h3>
-                      <!-- <span class="badge">{{ game.price }}€</span></h3> -->
-                    <p>{{ game.description }}</p>
+            <v-card class="my-12"
+              :loading="loading"
+              max-width="374">
+              <v-img 
+                height="250"
+                :src="game.box_cover.url" alt="">
+              </v-img>
+              <v-card-title>{{ game.title }}</v-card-title>
+                <!-- <span class="badge">{{ game.price }}€</span></h3> -->
+              <v-card-text>
+                <v-row
+                  align="center"
+                  class="mx-0"
+                >
+                  <v-rating
+                    :value="4"
+                    color="amber"
+                    dense
+                    half-increments
+                    readonly
+                    size="14"
+                  ></v-rating>
+                  <div class="grey--text ms-4">
+                    4.2 (43)
+                  </div>
+                </v-row>
+                <div v-if="game.editor" class="my-4 text-subtitle-1">
+                  Editeur : {{ game.editor.name }}
                 </div>
-                <div class="card-footer">
-                  
-                  <!-- Ajout à collection etc  -->
-                  <button class="button-primary">Add to cart</button>
-                </div>
-            </div>
-        </div>
+                <div v-if="game.description"> {{ game.description.substring(0, 140) }} </div>
+              </v-card-text>
+              <v-divider class="mx-4"></v-divider>
+
+              <v-card-text>
+                <v-chip-group
+                  v-model="selection"
+                  active-class="deep-purple accent-4 white--text"
+                  column
+                >
+                  <v-card-actions>
+                    <v-chip        
+                      @click="action">Discussion</v-chip>
+                    <v-chip>fiche</v-chip>
+                    <v-chip>+ ludo</v-chip>
+                    <v-chip>+ favs</v-chip>
+                  </v-card-actions>
+                </v-chip-group>
+              </v-card-text>
+            </v-card>
+          </div>
       </div>
 
       <!-- display infos personnalisées / collection -->

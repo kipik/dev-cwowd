@@ -1,52 +1,64 @@
 <template>
-  <div class="uk-child-width-1-2@m uk-grid">
-    <div class="uk-card uk-card-default uk-card-large uk-card-body">
+  <section class="container">
+    <div class="col-md-6 offset-md-3 mt-3">
+      <form @submit.stop.prevent="handleSubmit"> 
+        <legend class="legend">Connexion</legend>
 
-              <form @submit.stop.prevent="handleSubmit">
-                  <fieldset class="uk-fieldset">
-
-                      <legend class="uk-legend">Sign in</legend>
-
-                      <div class="uk-margin">
-                        <label class="uk-form-label" for="form-stacked-text">Email</label>
-                        <input v-model="email" class="uk-input" type="email" placeholder="paul.bocuse@gmail.com">
-                      </div>
-
-                      <div class="uk-margin">
-                        <label class="uk-form-label" for="form-stacked-text">Password</label>
-                        <input v-model="password" class="uk-input" type="password">
-                      </div>
-
-                      <div class="uk-margin">
-                        <button class="uk-button uk-button-primary uk-width-1-1" :disabled="loading" type="submit">Submit</button>
-                      </div>
-
-                      <div class="uk-margin">
-                        <p>
-                          No account yet?
-                          <router-link :to="{ name: 'users-register'}">
-                            Register
-                          </router-link>
-                        </p>
-                      </div>
-
-                  </fieldset>
-              </form>
-
+          <v-text-field
+            id="email"
+            v-model="email"
+            label="E-mail"
+            :rules="[rules.required, rules.email]"
+          ></v-text-field>
+          <v-text-field
+            id="password"
+            v-model="password"
+            label="mot de passe"
+            required
+          ></v-text-field>
+          
+          <div class="switch">
+            <v-btn
+              class="mr-4"
+              :disabled="loading"
+              @click="handleSubmit"
+            >
+              On y va !
+            </v-btn>
+            <span class="margin">
+              <p>
+                Pas encore de compte ?
+                <router-link :to="{ name: 'users-register'}">
+                  Je m'inscris
+                </router-link>
+              </p>
+            </span>
+          </div>
+      </form>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
-import strapi from '~/utils/Strapi'
+import Strapi from 'strapi-sdk-javascript/build/main'
+
+const apiUrl = process.env.API_URL || 'http://localhost:1337'
+const strapi = new Strapi(apiUrl)
 
 export default {
   data() {
     return {
       email: '',
       password: '',
-      loading: false
+      loading: false,
+      rules: {
+        required: value => !!value || 'Required.',
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        },
+      },
     }
   },
   methods: {
@@ -59,7 +71,7 @@ export default {
         )
         this.loading = false
         this.setUser(response.user)
-        this.$router.go(-1)
+        this.$router.push('/')
       } catch (err) {
         this.loading = false
         alert(err.message || 'An error occurred.')

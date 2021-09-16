@@ -5,7 +5,6 @@
             <v-toolbar-title>
                 <NuxtLink to="/" class="a">Cwowd</NuxtLink>
             </v-toolbar-title>
-            <v-subheader class="subheader">Ludique et participatif</v-subheader>
       
             <v-spacer />
       
@@ -106,7 +105,7 @@ a {
 .navbar-nav a {
     display: flex;
     justify-self: space-between;
-    margin: 2px  12px;    
+    margin: 2px 12px;    
 }
 ul {
   list-style-type: none;
